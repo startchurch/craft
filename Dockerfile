@@ -1,13 +1,5 @@
-FROM node:alpine
+FROM craftcms/php-fpm:8.0-dev
 
-WORKDIR /app
+RUN composer create-project craftcms/craft 
+EXPOSE 80 3306
 
-COPY package.json .
-
-RUN npm install
-
-COPY . .
-
-EXPOSE 5000
-
-CMD [ "node", "index.js" ]

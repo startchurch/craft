@@ -1,0 +1,28 @@
+version: '3'
+services:
+    nginx: 
+        image: nginx:alpine
+        ports:
+        - 80:80
+    web:
+        image: 'craftcms/php-fpm:8.0-dev'
+        expose:
+        - 3000 9000
+
+        environment:
+            ENVIRONMENT: dev
+            DB_SERVER: mysql:8.0
+            DB_USER: nitro
+            DB_PASSWORD: nitro
+            DB_DATABASE: nitro
+         
+    db:
+        image: 'mysql:8.0'
+        # restart: always
+        ports:
+            - '3306:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: nitro
+            MYSQL_DATABASE: nitro
+            MYSQL_USER: nitro
+            MYSQL_PASSWORD: nitro
